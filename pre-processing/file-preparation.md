@@ -33,7 +33,14 @@ We ran the main analyses and generated a core genome alignment for pylogenetic a
 
 `panaroo -i *.gff -o ./results_clean/ --clean-mode strict -a core --aligner clustal --core_threshold 0.98 -t 1`
 
+We perform a pangenome search with a strict setting:
+
+`panaroo -i *.gff -o results_strict/ --clean-mode strict`
+
 We infer the phylogenetic relationships among the isolates using RAXML under a Multigamma subdstitution model
 
 `raxmlHPC -p 12345 -x 12345 -# 100 -m MULTIGAMMA -s core_alignment.fasta -K GTR -n T1`
 
+Meanwhile, we also estimated the changes in the pangenome using an infinite gene model (IGM):
+
+`
