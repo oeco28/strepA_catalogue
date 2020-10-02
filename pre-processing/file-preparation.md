@@ -15,6 +15,25 @@ Once we re-annotated the genomes we moved all gff files to a separate folder for
 
 `for i in `cat list`; do cp Prokka_$i/*gff gff_files/$i.gff ; done`
 
-And then we ran PIRATE on the new set of annotated genomes:
+## Analyses with PIRATE
+
+We ran PIRATE on the new set of annotated genomes uner 4 different conditions 50%, 70%, 90% and 95% of completion:
 
 `PIRATE -i gff_files/ -s "50,70,90,95" -o pirate_results/ -a -r`
+
+## Analyses with Panaroo
+
+We ran panaroo to detect contamination first and remove any atypical genomes:
+
+`panaroo -i ./*.gff -o panaroo_alig/ -t 1 -a core --clean-mode moderate`
+
+We identified <it GCA_003240915.1_ASM324091v1_genomic \it> as being a contaminant (see contamination MDS plot) and removed it from the analyses
+
+We ran the main analyses and generated a core genome alignment for pylogenetic analyses:
+
+`panaroo -i *.gff -o ./results_clean/ --clean-mode strict -a core --aligner clustal --core_threshold 0.98 -t 1`
+
+We infer the phylogenetic relationships among the isolates using RAXML under a Multigamma subdstitution model
+
+`raxmlHPC -p 12345 -x 12345 -# 100 -m MULTIGAMMA -s core_alignment.fasta -K GTR -n T1`
+
