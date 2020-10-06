@@ -1,4 +1,4 @@
-# This repository is created to start the process of creating a genomic catalogue of *treptococcus pyogenes* genomes available at: https://www.ncbi.nlm.nih.gov/assembly/?term=streptococcus%20pyogenes
+# This repository is created to start the process of creating a genomic catalogue of *treptococcus pyogenes* genomes
 
 
 This is a set of commands perfomed to prepare the files to build the catalog
