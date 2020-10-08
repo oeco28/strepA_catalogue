@@ -44,6 +44,10 @@ We infer the phylogenetic relationships among the isolates using RAXML under a M
 
 `raxmlHPC -p 12345 -x 12345 -# 100 -m MULTIGAMMA -s core_alignment.fasta -K GTR -n T1`
 
+or
+
+`iqtree -s core_gene_alignment.fasta.phy -m MFP+MERGE -bb 1000 -nt AUTO`
+
 Meanwhile, we also estimated the changes in the pangenome using an infinite gene model (IGM):
 
 
